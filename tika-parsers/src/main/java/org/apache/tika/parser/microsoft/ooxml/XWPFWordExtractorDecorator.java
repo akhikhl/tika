@@ -133,7 +133,13 @@ public class XWPFWordExtractorDecorator extends AbstractOOXMLExtractor {
              styleClass = tas.getStyleClass();
           }
        }
-       
+
+       String numFmt = paragraph.getNumFmt();
+       if(numFmt != null) {
+          numFmt = "list_" + numFmt;
+          styleClass = styleClass == null ? numFmt : styleClass + " " + numFmt;
+       }
+
        if(styleClass == null) {
           xhtml.startElement(tag);
        } else {
